@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg-primary: #0a0e17;
+  --bg-secondary: #111827;
+  --bg-card: rgba(17, 24, 39, 0.8);
+  --neon-cyan: #00f0ff;
+  --neon-red: #ff0040;
+  --neon-green: #00ff88;
+  --neon-yellow: #ffaa00;
+  --neon-purple: #a855f7;
+  --text-primary: #e0e6ed;
+  --text-secondary: #8892a4;
+  --glow-cyan: 0 0 20px rgba(0, 240, 255, 0.3);
+  --glow-red: 0 0 20px rgba(255, 0, 64, 0.3);
+  --glow-green: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ─────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(17, 24, 39, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.5);
+}
+
+/* ── Neon Glow Animations ─────────────────── */
+
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 240, 255, 0.2),
+                0 0 10px rgba(0, 240, 255, 0.1),
+                0 0 20px rgba(0, 240, 255, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4),
+                0 0 20px rgba(0, 240, 255, 0.2),
+                0 0 40px rgba(0, 240, 255, 0.1);
+  }
+}
+
+@keyframes neonPulseRed {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 0, 64, 0.2),
+                0 0 10px rgba(255, 0, 64, 0.1),
+                0 0 20px rgba(255, 0, 64, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(255, 0, 64, 0.4),
+                0 0 20px rgba(255, 0, 64, 0.2),
+                0 0 40px rgba(255, 0, 64, 0.1);
+  }
+}
+
+@keyframes neonPulseGreen {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 255, 136, 0.2),
+                0 0 10px rgba(0, 255, 136, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.4),
+                0 0 20px rgba(0, 255, 136, 0.2);
+  }
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.6),
+                 0 0 30px rgba(0, 240, 255, 0.3);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(0, 240, 255, 0.1);
+  }
+  50% {
+    border-color: rgba(0, 240, 255, 0.4);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* ── Utility Classes ──────────────────────── */
+
+.neon-border {
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  animation: borderGlow 3s ease-in-out infinite;
+}
+
+.neon-border-red {
+  border: 1px solid rgba(255, 0, 64, 0.2);
+  animation: neonPulseRed 3s ease-in-out infinite;
+}
+
+.neon-text {
+  animation: textGlow 2s ease-in-out infinite;
+}
+
+.glass-panel {
+  background: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 240, 255, 0.1);
+  border-radius: 8px;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* ── Camera Feed ──────────────────────────── */
+
+.camera-feed {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.camera-feed::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 50%,
+    rgba(0, 0, 0, 0.03) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+.camera-feed video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Log Panel ────────────────────────────── */
+
+.log-entry {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  padding: 3px 0;
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.log-entry .tag-info {
+  color: var(--neon-cyan);
+}
+
+.log-entry .tag-warn {
+  color: var(--neon-yellow);
+}
+
+.log-entry .tag-success {
+  color: var(--neon-green);
+}
+
+.log-entry .tag-error {
+  color: var(--neon-red);
+}
+
+/* ── POV Toggle ───────────────────────────── */
+
+.pov-toggle {
+  position: relative;
+  display: inline-flex;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.pov-toggle button {
+  position: relative;
+  z-index: 1;
+  padding: 8px 24px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.3s;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pov-toggle button.active {
+  color: #fff;
+}
+
+/* ── Impact Screen ────────────────────────── */
+
+.impact-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.impact-overlay h1 {
+  font-size: 2.5rem;
+  color: var(--neon-red);
+  animation: neonPulseRed 1.5s ease-in-out infinite, textGlow 1s ease-in-out infinite;
+  text-shadow: 0 0 20px rgba(255, 0, 64, 0.5);
+  margin-bottom: 2rem;
+}
+
+/* ── Disclaimer Banner ────────────────────── */
+
+.disclaimer-banner {
+  background: linear-gradient(90deg, rgba(255, 170, 0, 0.1), rgba(255, 0, 64, 0.1));
+  border-bottom: 1px solid rgba(255, 170, 0, 0.3);
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--neon-yellow);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+}
